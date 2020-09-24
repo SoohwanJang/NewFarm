@@ -3,7 +3,6 @@ package com.farm.web.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -12,7 +11,6 @@ import org.apache.ibatis.annotations.Update;
 
 import com.farm.web.entity.AdminSellerView;
 import com.farm.web.entity.Member;
-import com.farm.web.entity.SellerApply;
 
 @Mapper
 public interface MemberDao {
@@ -20,9 +18,6 @@ public interface MemberDao {
 	@Select("SELECT * FROM AdminSeller WHERE ${field} LIKE '%${query}%' ORDER BY id ASC limit #{offset}, #{size}")
 	List<AdminSellerView> getAdminSellerList(int page, String query, String field, int offset, int size) throws ClassNotFoundException, SQLException;
 	
-	@Select("SELECT a.id, s.id, a.comName, s.comName, s.brn, s.repName, s.staffName, s.phone, s.email, s.sellingUrl FROM AdminSeller AS a right JOIN SellerApply AS s ON a.id = s.id")
-	SellerApply getAdminAuthList(int id) throws ClassNotFoundException, SQLException;
-
 	@Select("select * from Member where id = #{id}")
 	Member get(int id);
 	

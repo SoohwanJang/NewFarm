@@ -14,14 +14,13 @@ public class Member {
    private String phone;
    private Date regDate;
    private int enabled;
-   private String role;
    
    public Member() {
       // TODO Auto-generated constructor stub
    }
 
    public Member(int id, String uid, String pwd, String name, String email, String address, String mobile, String phone,
-         Date regDate, int enabled, String role) {
+         Date regDate, int enabled) {
       super();
       this.id = id;
       this.uid = uid;
@@ -33,7 +32,6 @@ public class Member {
       this.phone = phone;
       this.regDate = regDate;
       this.enabled = enabled;
-      this.role = role;
    }
 
    public int getId() {
@@ -116,19 +114,11 @@ public class Member {
       this.enabled = enabled;
    }
 
-   public String getRole() {
-      return role;
-   }
-
-   public void setRole(String role) {
-      this.role = role;
-   }
-
    @Override
    public String toString() {
       return "Member [id=" + id + ", uid=" + uid + ", pwd=" + pwd + ", name=" + name + ", email=" + email
             + ", address=" + address + ", mobile=" + mobile + ", phone=" + phone + ", regDate=" + regDate
-            + ", enabled=" + enabled + ", role=" + role + "]";
+            + ", enabled=" + enabled + "]";
    }
    
    

@@ -10,7 +10,7 @@
 	                    <a href="../index"> </a>
 	                </li>
 	                <li>
-	                    <a href="login">로그인</a>
+	                    <a href="sellerLogin">판매자 로그인</a>
 	                </li>
 	            </ol>
 	        </div>
@@ -19,25 +19,15 @@
 	            <header>
 	                <div class="login-intro">
 	                    <span>반갑습니다</span>
-	                    <img src="../images/logo.png"><span>입니다.</span>
+	                    <img src="../images/logo.png"><span>판매자 로그인 페이지입니다.</span>
 	                </div>
 	            </header>
-	            <form action="login" method="post" class="login-form">
+	            <form action="sellerLogin" method="post" class="login-form">
 	                <input type="text" name="username" placeholder="아이디" />
 	                <input type="password" name="password" placeholder="비밀번호">
 	                <input type="submit" value="로그인">
 	            </form>
-	            
-	            <ul class="find-button-list">
-	                <li><a href="" class="search-pop-button">아이디 찾기</a></li>
-	                <li><a href="" class="search-pop-button">비밀번호 찾기</a></li>
-	                <li><a href="signup">회원가입</a></li>
-	            </ul>
-	            
-	            <ul class="find-button-list">
-	                <li><a href="/member/adminLogin" class="search-pop-button">관리자 로그인 하기</a></li>
-	                <li><a href="/member/sellerLogin" class="search-pop-button">판매자 로그인 하기</a></li>
-	            </ul>
+
 			<!--  
 	            <ul class="link-button-list">
 	                <li><button class="naver-link-button">네이버 로그인</button></li>

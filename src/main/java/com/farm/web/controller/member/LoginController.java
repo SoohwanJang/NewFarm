@@ -27,6 +27,18 @@ public class LoginController {
 		return "member.login";
 	}
 	
+	@GetMapping("adminLogin")
+	public String adminLogin() {
+		
+		return "member.adminLogin";
+	}
+	
+	@GetMapping("sellerLogin")
+	public String sellerLogin() {
+		
+		return "member.sellerLogin";
+	}
+	
 	@GetMapping("popup")
 	public String popup() {
 		
