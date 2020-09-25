@@ -1,6 +1,12 @@
 package com.farm.web.controller.member;
 
+import java.io.UnsupportedEncodingException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.farm.web.entity.Member;
+import com.farm.web.entity.Seller;
 import com.farm.web.service.MemberService;
 
 
@@ -33,6 +40,23 @@ public class SignupController {
 		return "redirect:/index";
 	
 	}
+	
+//	판매자 회원가입
+	@GetMapping("signup2")
+	public String signup2() {
+		
+		return "member.signup2";
+	}
+	
+	@PostMapping("signup2")
+	public String signup2(@RequestBody Seller seller) {
+
+		memberService.insertSeller(seller);
+		
+		return "redirect:/index";
+	
+	}
+	
 	
 	@PostMapping("checkId")
 	@ResponseBody

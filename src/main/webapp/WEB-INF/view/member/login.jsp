@@ -32,11 +32,12 @@
 	                <li><a href="" class="search-pop-button">아이디 찾기</a></li>
 	                <li><a href="" class="search-pop-button">비밀번호 찾기</a></li>
 	                <li><a href="signup">회원가입</a></li>
+	                <li><a href="signup2">입점신청</a></li>
 	            </ul>
 	            
 	            <ul class="find-button-list">
-	                <li><a href="/member/adminLogin" class="search-pop-button">관리자 로그인 하기</a></li>
-	                <li><a href="/member/sellerLogin" class="search-pop-button">판매자 로그인 하기</a></li>
+	                <li><a href="/member/adminLogin" >관리자 로그인 하기</a></li>
+	                <li><a href="/member/sellerLogin" >판매자 로그인 하기</a></li>
 	            </ul>
 			<!--  
 	            <ul class="link-button-list">

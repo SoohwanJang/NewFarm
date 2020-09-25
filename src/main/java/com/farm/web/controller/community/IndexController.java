@@ -6,15 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.farm.web.entity.CustQnAView;
 import com.farm.web.entity.Notice;
-import com.farm.web.entity.NoticeView;
 import com.farm.web.entity.ReviewView;
-import com.farm.web.entity.SellerApply;
 import com.farm.web.service.CommunityService;
 
 @Controller("CommunityIndexController")
@@ -34,9 +31,6 @@ public class IndexController {
 		List<Notice> noticeList = communityService.getNoticeList(page, field, query);
 		model.addAttribute("notice", noticeList);
 		
-		//Apply
-		List<SellerApply> applyList = communityService.getApplyList(page, field, query);
-		model.addAttribute("apply", applyList);
 		
 		//QnA
 		List<CustQnAView> custQnaList = communityService.getCustQnAList(page, field, query);

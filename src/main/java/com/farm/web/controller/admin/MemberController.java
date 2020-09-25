@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.farm.web.dao.MemberDao;
 import com.farm.web.entity.AdminSellerView;
 import com.farm.web.entity.Member;
-import com.farm.web.entity.SellerApply;
 import com.farm.web.service.MemberService;
 
 @Controller
@@ -55,17 +53,7 @@ public class MemberController {
 	
 	///////////////////////////////////////////////////////////////////////////
 	
-	// 입점 신청 세부사항
-	@GetMapping("sellerDetail")
-	public String getAdminAuthList(int id, Model model) throws ClassNotFoundException, SQLException {
-		
-		SellerApply sellerApply = memberService.getAdminAuthList(id);
-		model.addAttribute("s", sellerApply);	// 판매자목록 → 입점신청정보
-		
-		System.out.println(id);	// id 확인용
-		
-		return "admin.member.sellerDetail";
-	}
+
 	
 	///////////////////////////////////////////////////////////////////////////
 	

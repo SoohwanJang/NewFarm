@@ -1,6 +1,7 @@
 package com.farm.web.dao;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
@@ -11,6 +12,7 @@ import org.apache.ibatis.annotations.Update;
 
 import com.farm.web.entity.AdminSellerView;
 import com.farm.web.entity.Member;
+import com.farm.web.entity.Seller;
 
 @Mapper
 public interface MemberDao {
@@ -59,6 +61,10 @@ public interface MemberDao {
 	//회원가입 - 수경
 	@Insert("insert into Member (uid, pwd, name, email, address, mobile, phone, role) values (#{uid},#{pwd},#{name},#{email},#{address},#{mobile},#{phone},#{role});")
 	int insert(Member member);
+	
+//	판매자 회원가입
+	@Insert("insert into Seller (uid, pwd, comName, brn, repName, staffName, telephone, phone, email, address, sellingUrl, titleImage) values (#{uid},#{pwd},#{comName},#{brn},#{repName},#{staffName},#{telephone},#{phone},#{email},#{address},#{sellingUrl},#{titleImage})")
+	int insertSeller(Seller seller);
 
 	@Select("select count(uid) from Member where uid=#{uid}")
 	int selectId(Member member);

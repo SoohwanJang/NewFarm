@@ -17,7 +17,7 @@ import com.farm.web.entity.AdminSellerView;
 import com.farm.web.entity.FavItemView;
 import com.farm.web.entity.FavSellerView;
 import com.farm.web.entity.Member;
-import com.farm.web.entity.SellerApply;
+import com.farm.web.entity.Seller;
 import com.farm.web.entity.SimpleCountView;
 
 @Service
@@ -41,10 +41,6 @@ public class MemberService {
 		return memberDao.getAdminSellerList(page, query, field, offset, size);
 	}
 
-	public SellerApply getAdminAuthList(int id) throws ClassNotFoundException, SQLException {
-
-		return memberDao.getAdminAuthList(id);
-	}
 	
 	public List<Member> getAdminBuyerList(int page, String query, String field) throws ClassNotFoundException, SQLException {
 		int size = 10;
@@ -187,6 +183,17 @@ public int insert(Member member) {
       	member.setPwd(encoder.encode(pwd));
 		
 		return memberDao.updatePwd(member);
+	}
+
+//	판매자 회원가입
+	public int insertSeller(Seller seller) {
+
+		String pwd = seller.getPwd();
+
+		PasswordEncoder encoder = new BCryptPasswordEncoder();
+      	seller.setPwd(encoder.encode(pwd));
+		
+		return memberDao.insertSeller(seller);
 	}
 
 }

@@ -25,7 +25,6 @@
                     <td> 
                         <ul class="division-list">
                             <li><input type="radio" name="role" value="ROLE_MEMBER" checked>개인회원</li>
-                            <li><input type="radio" name="role" value="ROLE_SELLER">사업자회원</li>
                         </ul>
                     </td>
                 </tr>

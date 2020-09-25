@@ -19,7 +19,8 @@
 	            <header>
 	                <div class="login-intro">
 	                    <span>반갑습니다</span>
-	                    <img src="../images/logo.png"><span>판매자 로그인 페이지입니다.</span>
+	                    <img src="../images/logo.png"><br>
+	                    <span>판매자 로그인 페이지입니다.</span>
 	                </div>
 	            </header>
 	            <form action="sellerLogin" method="post" class="login-form">
@@ -27,6 +28,10 @@
 	                <input type="password" name="password" placeholder="비밀번호">
 	                <input type="submit" value="로그인">
 	            </form>
+	            
+	            <ul class="find-button-list">
+	                <li><a href="/member/login" >회원 로그인 하기</a></li>
+	            </ul>
 
 			<!--  
 	            <ul class="link-button-list">

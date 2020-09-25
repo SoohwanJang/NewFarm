@@ -19,7 +19,8 @@
 	            <header>
 	                <div class="login-intro">
 	                    <span>반갑습니다</span>
-	                    <img src="../images/logo.png"><span>관리자 로그인 페이지입니다.</span>
+	                    <img src="../images/logo.png"><br>
+	                    <span>관리자 로그인 페이지입니다.</span>
 	                </div>
 	            </header>
 	            <form action="adminLogin" method="post" class="login-form">
@@ -29,7 +30,7 @@
 	            </form>
 	            
 	           	<ul class="find-button-list">
-	                <li><a href="/member/login" class="search-pop-button">회원 로그인 하기</a></li>
+	                <li><a href="/member/login" >회원 로그인 하기</a></li>
 	            </ul>
 
 			<!--  

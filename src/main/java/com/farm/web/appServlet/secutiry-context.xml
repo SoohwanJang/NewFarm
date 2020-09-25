@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:sec="http://www.springframework.org/schema/security"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd">
+	
+	<!-- 이부분이 없으면 에러난다.. 우선은 alias태그만 넣어둔다. 나중에 디비에서 사용자 처리시 변경된다.-->
+	<!-- <sec:authentication-manager alias="authenticationManager" /> -->
+	<sec:authentication-manager id="adminAuthManager">
+		<sec:authentication-provider ref="adminAuthProvider"/>
+	</sec:authentication-manager>
+	<bean id="adminAuthProvider"  class="com.spring.securitytest.AdminAuthService"/>
+	
+	<!-- handler  설정시...
+	<bean id="adminAuthSuccessHandler" class="com.spring.securitytest.AdminAuthSuccessHandler">
+		<property name="defaultUrl" value="/admin/main" />
+	</bean>
+	
+	<bean id="adminAuthFailureHandler" class="com.spring.securitytest.AdminAuthFailHandler">
+		<property name="errorMessage"   value="" />
+		<property name="defaultFailUrl" value="/admin/login?status=error" />
+	</bean>
+	-->
+	
+	<sec:authentication-manager id="memberAuthManager">
+		<sec:authentication-provider ref="memberAuthProvider"/>
+	</sec:authentication-manager>
+	<bean id="memberAuthProvider" class="com.spring.securitytest.MemberAuthService"/>
+	
+	<sec:authentication-manager id="sellerAuthManager">
+		<sec:authentication-provider ref="memberAuthProvider"/>
+	</sec:authentication-manager>
+	<bean id="sellerAuthProvider" class="com.spring.securitytest.MemberAuthService"/>
+	
+	<!-- secured method --> 
+	<sec:global-method-security secured-annotations="enabled" /> 
+	
+	<!-- 인증예외처리 -->
+    <!-- <sec:http pattern="/cmmn3th/**"     security="none" /> -->
+	
+	<!-- admin security -->
+	<sec:http 
+		pattern="/admin/**" 
+		auto-config="true" 
+		use-expressions="true"
+		authentication-manager-ref="adminAuthManager"	
+	> 
+		<!-- csrf 사용여부 - true:사용안함 , false:사용함 -->
+		<sec:csrf disabled="false"/> 
+		
+		<sec:intercept-url pattern="/member/adminLogin"  access="permitAll" />
+		<sec:intercept-url pattern="/admin/**"     access="hasAnyRole('ROLE_ADMIN')" />
+		
+		<!-- 로그인 시 처리
+		-->
+		<sec:form-login 
+			login-page="/member/adminLogin" 
+			username-parameter="admin_id" 
+			password-parameter="admin_pw"
+			login-processing-url="/admin/loginproc"
+			default-target-url="/index"
+			authentication-failure-url="/member/adminLogin?status=fail"
+		/> 
+		
+		<!-- 로그아웃 시 처리
+		 -->
+		<sec:logout 
+			logout-url="/member/logout" 
+			logout-success-url="/index"
+			invalidate-session="true" 
+			delete-cookies ="true" 
+		/> 
+		<!-- 중복 세션관리 
+		-->
+<!-- 		<sec:session-management invalid-session-url="/admin/login"> 
+			<sec:concurrency-control 
+				max-sessions="1" 
+				error-if-maximum-exceeded="false" 
+				expired-url="/admin/loginDuplicate"
+			/> 
+		</sec:session-management>  -->
+		
+	</sec:http> 
+
+	<!-- member security -->
+	<sec:http 
+		pattern="/member/**" 
+		auto-config="true" 
+		use-expressions="true"
+		authentication-manager-ref="memberAuthManager"
+	> 
+		
+		<!-- csrf 사용여부 - true:사용안함 , false:사용함 -->
+		<sec:csrf disabled="false"/> 
+		
+		<sec:intercept-url pattern="/member/login" access="permitAll" />
+		<sec:intercept-url pattern="/member/**"    access="hasAnyRole('ROLE_MEMBER')" />
+		
+		<sec:form-login 
+			login-page="/member/login" 
+			username-parameter="member_id" 
+			password-parameter="member_pw"
+			login-processing-url="/member/loginproc"
+			default-target-url="/index"
+			authentication-failure-url="/member/login?status=fail"
+		/> 
+		
+		<!-- 로그아웃 시 처리
+		-->
+		<sec:logout 
+			logout-url="/member/logout" 
+			logout-success-url="/index"
+			invalidate-session="true" 
+			delete-cookies ="true" 
+		/> 
+		
+		<!-- 중복 세션관리 
+		-->
+<!-- 		<sec:session-management invalid-session-url="/member/login"> 
+			<sec:concurrency-control 
+				max-sessions="1" 
+				error-if-maximum-exceeded="false" 
+				expired-url="/member/loginDuplicate"
+			/> 
+		</sec:session-management>  -->
+		
+	</sec:http> 
+	
+		<!-- seller security -->
+	<sec:http 
+		pattern="/seller/**" 
+		auto-config="true" 
+		use-expressions="true"
+		authentication-manager-ref="sellerAuthManager"
+	> 
+		
+		<!-- csrf 사용여부 - true:사용안함 , false:사용함 -->
+		<sec:csrf disabled="false"/> 
+		
+		<sec:intercept-url pattern="/member/sellerLogin" access="permitAll" />
+		<sec:intercept-url pattern="/seller/**"    access="hasAnyRole('ROLE_SELLER')" />
+		
+		<sec:form-login 
+			login-page="/member/sellerLogin" 
+			username-parameter="seller_id" 
+			password-parameter="seller_pw"
+			login-processing-url="/member/loginproc"
+			default-target-url="/index"
+			authentication-failure-url="/member/sellerLogin?status=fail"
+		/> 
+		
+		<!-- 로그아웃 시 처리
+		-->
+		<sec:logout 
+			logout-url="/member/logout" 
+			logout-success-url="/index"
+			invalidate-session="true" 
+			delete-cookies ="true" 
+		/> 
+		
+		<!-- 중복 세션관리 
+		-->
+<!-- 		<sec:session-management invalid-session-url="/member/login"> 
+			<sec:concurrency-control 
+				max-sessions="1" 
+				error-if-maximum-exceeded="false" 
+				expired-url="/member/loginDuplicate"
+			/> 
+		</sec:session-management>  -->
+		
+	</sec:http> 
+	
+	
+</beans>
